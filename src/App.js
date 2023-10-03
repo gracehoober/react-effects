@@ -1,25 +1,29 @@
-import logo from './logo.svg';
+import React from 'react';
+import Deck from './Deck';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Deck />
     </div>
   );
 }
 
 export default App;
+
+/**
+ * fetch deck- once (use effect())
+ * fetch a card from the deck- depends on a button
+ *
+ * state: {deck: card: }??
+ *
+ * Components
+ * -App
+ *
+ * -Deck: make request to get initial deck
+ *  --shows a button
+ *
+ * -Card:
+ *  --pass props of the card info
+ */
