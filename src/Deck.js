@@ -26,7 +26,7 @@ function Deck() {
     return <p>Loading...</p>;
   }
 
-  async function handleClick() {
+  async function handleDraw() {
     if(cards.remaining === 0){
       setCards(() => ({...cards, noCards: true}))
       return
@@ -39,9 +39,16 @@ function Deck() {
       remaining: cardData.remaining }));
   }
 
+  async function handleShuffle(){
+    const response = await fetch(`${DECK_API_URL}/${cards.deckId}/shuffle`)
+    const shuffled = await response.json();
+    setCards(() => ({...cards, currentCard: null, remaining: shuffled.remaining}))
+  }
+  //another peice of state: isShuffling for disabling the shuffle button.
   return (
     <div>
-      <button onClick={handleClick}>Draw a card</button>
+      <button onClick={handleDraw}>Draw a card</button>
+      <button onClick={handleShuffle} disabled={}>Shuffle</button>
       {cards.currentCard && <Card card={cards} />}
     </div>
   );
